@@ -8,4 +8,4 @@ build:
 run:
   command: fastapi run main.py
   persistenceMount: /data
-  containerPort: 80
+  containerPort: 8000
