@@ -82,6 +82,7 @@ uvicorn main:app --reload
 | Метод | Путь | Описание |
 |-------|------|----------|
 | GET | `/units` | Список юнитов с фильтрацией и сортировкой |
+| GET | `/units/{unit_id}` | Один юнит по идентификатору |
 
 #### Параметры фильтрации `/units`
 
@@ -110,6 +111,11 @@ uvicorn main:app --reload
 | `sort_order` | `asc`, `desc` | Порядок (по умолчанию `asc`) |
 
 ## Примеры запросов
+
+### Получение одного юнита по ID
+```bash
+curl "http://localhost:8000/units/280"
+```
 
 ### Фильтр по эре и фракции
 ```bash
@@ -164,7 +170,7 @@ Maskirovka_server/
 │   ├── __init__.py
 │   ├── eras.py          # GET /eras
 │   ├── factions.py      # GET /factions
-│   ├── units.py         # GET /units
+│   ├── units.py         # GET /units, GET /units/{unit_id}
 │   └── meta.py          # GET /roles, GET /types
 └── services/
     ├── __init__.py

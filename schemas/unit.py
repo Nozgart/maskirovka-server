@@ -18,3 +18,5 @@ class UnitItem(BaseModel):
     struc: int
     threshold: int
     specials: str
+
+    model_config = {"from_attributes": True}
