@@ -3,8 +3,18 @@ from fastapi_pagination import Page
 from fastapi_pagination.ext.tortoise import apaginate
 from schemas import UnitItem
 from services import build_unit_query
+from models import UnitModel
 
 router = APIRouter(prefix="/units", tags=["units"])
+
+
+@router.get("/{unit_id}", response_model=UnitItem)
+async def get_unit(unit_id: int) -> UnitItem:
+    """Возвращает один юнит по его идентификатору."""
+    unit = await UnitModel.get_or_none(unit_id=unit_id)
+    if unit is None:
+        raise HTTPException(status_code=404, detail="Юнит не найден")
+    return UnitItem.model_validate(unit)
 
 
 @router.get("", response_model=Page[UnitItem])
